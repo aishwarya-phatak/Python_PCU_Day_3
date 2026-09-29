@@ -129,3 +129,56 @@ for i in list_of_squares:
 print("-------cubes of numbers from list--------")
 for i in list_of_cubes:
     print(i)
+
+#4. passing function as an argument to another function
+def operations(val1,val2, operation):
+    return operation(val1,val2)
+
+def addition1(num1 : int , num2 : int):
+    return num1 + num2
+
+def difference1(num1 : int, num2 : int):
+    return num1 - num2
+
+res1 = operations(5,6,addition1)
+print("passing function as an arg to other function",res1)
+res2 = operations(100,32,difference1)
+print("passing function as an arg to other function",res2)
+
+#returning function from the function
+def get_operator(operator : int):
+    operator = eval(input("Enter the value 1 for addition or 2 for difference"))
+    if operator == 1:
+        return addition1
+    else:
+        return difference1
+
+res_3 = operations(14,2,get_operator(1))
+res_4 = operations(34,90,get_operator(2))
+print("returning function from another function",res_3)
+print("returning function from another function",res_4)
+
+#reference   --- #addresses of both num3 and number are same.
+def print_value(number):
+    print("number value and id of it : ",number,id(number))
+
+num3 = 10
+print(id(num3))
+print_value(num3)
+
+
+#addresses of num4 and number are different
+def print_value1(number):
+    number = number * 10
+    print("number value and id of it : ",number,id(number))
+
+num4 = 10
+print(f"num4 {num4} & id of num4 {id(num4)}")
+print_value1(num4)
+
+#lambda functions/expressions
+
+res5 = lambda x,y : x if x > y else y
+print(res5(12,19))
+res6 = lambda y : y * 10
+print(res6(14))
